@@ -12,7 +12,7 @@ function Products({ products }) {
     new Date(date).getFullYear(),
   ];
   return (
-    <div className='bg-main p-4 rounded w-max'>
+    <div className='bg-main p-4 rounded w-max hover:scale-105 transition duration-500'>
       <div className='flex gap-4 items-center'>
         <img src={image} alt='' className='w-[70px] h-[70px] rounded' />
         <div>
