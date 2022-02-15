@@ -10,6 +10,7 @@ export const ProductContext = createContext();
 export default function App() {
   const [productInit, setProductInit] = useState([]);
   const [productList, setProductList] = useState([]);
+  const [productFilter, setProductFilter] = useState([]);
   const nameList = _.groupBy(productList, 'product_name');
   const nameListInit = _.groupBy(productInit, 'product_name');
   const stateList = _.groupBy(productList, 'address.state');
@@ -38,12 +39,12 @@ export default function App() {
 
         case 'State':
           runFilter(
-            productInit.filter((product) => product.address.state === filtValue)
+            productList.filter((product) => product.address.state === filtValue)
           );
           break;
         case 'City':
           runFilter(
-            productInit.filter((product) => product.address.city === filtValue)
+            productList.filter((product) => product.address.city === filtValue)
           );
           break;
 
@@ -54,7 +55,14 @@ export default function App() {
   }, [filtValue]);
 
   function runFilter(arg) {
-    filtValue === '' ? setProductList(productInit) : setProductList(arg);
+    if (filtName === 'Product' && filtValue === '') {
+      setProductList(productInit);
+    } else if (filtValue === '') {
+      setProductList(productFilter);
+    } else {
+      setProductFilter(productList);
+      setProductList(arg);
+    }
   }
 
   function setFilterName(e) {
