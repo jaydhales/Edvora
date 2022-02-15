@@ -16,8 +16,22 @@ function ProductsPage() {
 
   const ref = useRef(null);
 
-  const scroll = (scrollOffset) => {
-    ref.current.scrollLeft += scrollOffset;
+  const inputRefs = [];
+
+  const setRef = (ref) => {
+    inputRefs.push(ref);
+  };
+
+  const scroll = (e, scrollOffset) => {
+    inputRefs.forEach((ref) => {
+      if (
+        ref.id ===
+          e.target.parentElement.parentElement.getAttribute('refvalue') ||
+        e.target.parentElement.getAttribute('refvalue')
+      ) {
+        ref.scrollLeft += scrollOffset;
+      }
+    });
   };
 
   return (
@@ -29,10 +43,12 @@ function ProductsPage() {
           <div
             key={sortedData[0].product_name}
             className='relative mb-12 m-0 md:w-[calc(100%-200px)]'
+            refvalue={sortedData[0].product_name}
           >
             <h2>{sortedData[0].product_name}</h2>
             <div
-              ref={ref}
+              ref={setRef}
+              id={sortedData[0].product_name}
               className='grid grid-flow-col no-scrollbar mx-4 md:mx-10 gap-5 overflow-scroll bg-dark p-5 rounded-2xl'
             >
               {sortedData.map((products) => (
@@ -41,8 +57,8 @@ function ProductsPage() {
             </div>
             <button
               className='absolute -right-2 md:right-2 top-[60%]'
-              onClick={() => {
-                scroll(70);
+              onClick={(e) => {
+                scroll(e, 70);
               }}
             >
               <svg
@@ -63,9 +79,8 @@ function ProductsPage() {
             </button>
             <button
               className='absolute top-[60%] -left-2 md:left-2'
-              onClick={() => {
-                scroll(-70);
-                console.log(ref.current.scrollLeft);
+              onClick={(e) => {
+                scroll(e, -70);
               }}
             >
               <svg
