@@ -33,17 +33,16 @@ function ProductsPage() {
             <h2>{sortedData[0].product_name}</h2>
             <div
               ref={ref}
-              className='grid grid-flow-col no-scrollbar mx-10 gap-5 overflow-scroll bg-dark p-5 rounded-2xl'
+              className='grid grid-flow-col no-scrollbar mx-4 md:mx-10 gap-5 overflow-scroll bg-dark p-5 rounded-2xl'
             >
               {sortedData.map((products) => (
                 <Products products={products} key={products.date} />
               ))}
             </div>
             <button
-              className='absolute right-2 top-[60%]'
+              className='absolute -right-2 md:right-2 top-[60%]'
               onClick={() => {
-                scroll(200);
-                ref.current.scrollLeft += 100;
+                scroll(70);
               }}
             >
               <svg
@@ -63,9 +62,9 @@ function ProductsPage() {
               </svg>
             </button>
             <button
-              className='absolute top-[60%] left-2'
+              className='absolute top-[60%] -left-2 md:left-2'
               onClick={() => {
-                scroll(-200);
+                scroll(-70);
                 console.log(ref.current.scrollLeft);
               }}
             >
