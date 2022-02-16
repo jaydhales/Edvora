@@ -87,7 +87,7 @@ export default function App() {
         setFilterValue,
       }}
     >
-      <div className='App md:flex gap-4 p-8 bg-main min-h-screen text-white overflow-clip w-full'>
+      <div className='App md:flex gap-4 p-8 bg-main min-h-screen text-white overflow-clip w-full font-[Lato]'>
         <Filter />
         <Main />
       </div>

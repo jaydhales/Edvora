@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import  { useContext, useRef } from 'react';
 import { ProductContext } from '../App';
 import Products from './Products.jsx';
 

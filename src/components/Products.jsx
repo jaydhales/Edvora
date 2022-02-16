@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Products({ products }) {
   const { product_name, brand_name, price, address, discription, date, image } =
     products;
